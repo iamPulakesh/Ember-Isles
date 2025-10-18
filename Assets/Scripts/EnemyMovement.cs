@@ -16,10 +16,8 @@ public class EnemyMovement : Movement
         // Calculate direction vector towards player
         Vector3 directionToPlayer = (newPosition - transform.position).normalized;
 
-        // Calculate target position just short of the player's position
         targetPosition = newPosition - directionToPlayer * stopDistance;
 
-        // Ensure the enemy faces the direction of movement
         transform.LookAt(newPosition);
 
         isMoving = true;
@@ -30,14 +28,13 @@ public class EnemyMovement : Movement
         // Additional behavior specific to enemy when a position is selected can be added here
         if (Vector3.Distance(transform.position, targetPosition) <= stopDistance)
         {
-            isMoving = false; // Stop moving when close enough to the target position
+            isMoving = false; 
             StartCoroutine(WaitForPlayerMove());
         }
     }
 
     private IEnumerator WaitForPlayerMove()
     {
-        // Wait for the player to make a move (you can implement this logic as needed)
         yield return new WaitUntil(() => !isMoving);
     }
 }
