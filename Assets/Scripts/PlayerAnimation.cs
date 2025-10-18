@@ -43,14 +43,14 @@ public class PlayerAnimation : MonoBehaviour
     private int DirectionToIndex(Vector3 directionVector)
     {
         float angle = Vector3.SignedAngle(Vector3.forward, directionVector, Vector3.up);
-        angle += 360f / 16f; // Offset angle to align with 16 directions (360/16 = 22.5)
+        angle += 360f / 16f; // Offset angle to align with 16 directions
 
         if (angle < 0)
         {
             angle += 360;
         }
 
-        float step = 360f / 8f; // 8 directions (0, 45, 90, 135, 180, 225, 270, 315)
+        float step = 360f / 8f; // 8 directions
         float halfStep = step / 2f;
 
         int index = Mathf.FloorToInt((angle + halfStep) / step) % 8; // Determine the index based on which section the angle falls into.
